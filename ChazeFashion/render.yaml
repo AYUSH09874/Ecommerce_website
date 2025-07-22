@@ -3,7 +3,9 @@ services:
     name: chazefashion
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
     startCommand: "gunicorn ChazeFashion.ChazeFashion.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
