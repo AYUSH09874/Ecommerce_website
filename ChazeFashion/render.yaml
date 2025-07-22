@@ -6,9 +6,11 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
-    startCommand: "gunicorn ChazeFashion.ChazeFashion.wsgi:application"
+    startCommand: gunicorn ChazeFashion.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: ChazeFashion.ChazeFashion.settings
+        value: ChazeFashion.settings
       - key: PYTHON_VERSION
         value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true  # Optional but good practice for production
