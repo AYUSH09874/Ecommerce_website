@@ -24,14 +24,15 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',  # ✅ Required
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # ✅ for static file support in production
+    'django.contrib.sessions.middleware.SessionMiddleware',  # ✅ must be before auth middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # ✅ Required
-    'django.contrib.messages.middleware.MessageMiddleware',  # ✅ Required
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  # ✅ required by admin
+    'django.contrib.messages.middleware.MessageMiddleware',  # ✅ required by admin
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 
 ROOT_URLCONF = 'ChazeFashion.urls'
