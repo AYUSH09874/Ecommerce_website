@@ -6,6 +6,7 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
+      python manage.py migrate  # ✅ run migrations during build
     startCommand: gunicorn ChazeFashion.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
@@ -13,4 +14,6 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.9
       - key: SECRET_KEY
-        generateValue: true  # Optional but good practice for production
+        generateValue: true
+      - key: DEBUG  # ✅ Add this explicitly for clarity
+        value: False
